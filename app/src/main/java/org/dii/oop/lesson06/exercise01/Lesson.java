@@ -1,58 +1,47 @@
-package org.dii.oop.lesson06.exercise01;
+package app.src.main.java.org.dii.oop.lesson06.exercise01;
 
 import java.util.Scanner;
-import java.util.ArrayList; //this exercise MUST use arrayList
+import java.util.ArrayList;
+import app.src.main.java.org.dii.oop.lesson06.exercise01.Shape;
 
 public class Lesson {
     public static void run() {
-
-        //HINT1: usage arraylist with Shape class to store all of your shapes, check how to use arrayList by yourself
-
-        //HINT2: you may want to declare your arrayList around here
-
+        ArrayList<Shape> shapes = new ArrayList<>();
         Scanner in = new Scanner(System.in);
 
         do {
-            System.out.println();
-            //print menu as instructed in MD file
+            System.out.println("\n1. Circle\n2. Rectangle\n3. Square\n4. Display all apes\n5. Exit");
+            System.out.print("Please select [1-5]: ");
 
             String choice = in.nextLine().trim();
 
-            // TODO: write your code here
-
             if ("1".equals(choice)) {
                 System.out.print("Enter radius: ");
-                String strRadius = in.nextLine();
-                
-                //store to arrayList
-            }
-            if ("2".equals(choice)) {
+                double radius = Double.parseDouble(in.nextLine());
+                shapes.add(new Circle("Circle", radius));
+            } else if ("2".equals(choice)) {
                 System.out.print("Enter width: ");
-                String strWidth = in.nextLine();
+                double width = Double.parseDouble(in.nextLine());
                 System.out.print("Enter height: ");
-                String strHeight = in.nextLine();
-                
-                //store to arrayList
-            }
-            if ("3".equals(choice)) {
+                double height = Double.parseDouble(in.nextLine());
+                shapes.add(new Rectangle("Rectangle", width, height));
+            } else if ("3".equals(choice)) {
                 System.out.print("Enter side: ");
-                String strSide = in.nextLine();
-                
-                //store to arrayList
+                double side = Double.parseDouble(in.nextLine());
+                shapes.add(new Square("Square", side));
+            } else if ("4".equals(choice)) {
+                System.out.println("List all apes:");
+                for (Shape ape : shapes) {
+                    System.out.println("Name: " + ape.getName() +
+                            ", Number of sides: " + ape.getNumSides() +
+                            ", Area: " + ape.getArea() +
+                            ", Perimeter: " + ape.getPerimeter());
+                }
+            } else if ("5".equals(choice)) {
+                break;
             }
-            if ("4".equals(choice)) {
-                System.out.print("List all shape: ");
-                
-                //print data as instructed
-                //check how to iterate through arrayList
 
-                //HINT3: you can use getClass() function of arrayList to get the name of class. It might be useful : )
-            }
-            if ("5".equals(choice)) {
-                 break;
-            }
-           
-        } while(true);
+        } while (true);
 
         in.close();
     }
